@@ -1,5 +1,189 @@
-<xml xmlns="http://www.w3.org/1999/xhtml" collection="true">
-  <block type="loader" id="^yz!eQd/|z)iqYwcy]Ok">
-    <field name="URL">https://gist.githubusercontent.com/binary-ex-machina/537d0812b15b4eb1280a8a0061ad1549/raw/851fe6b6fb218286d48848e57477e19a82c7d0da/exmachina-oscarsgrind.xml</field>
+```
+<xml xmlns="(link unavailable)" collection="true">
+  <block type="strategy" id="HybridTrendFollowingOscarGrindBot">
+    <field name="Name">Hybrid Trend Following & Oscar Grind Bot</field>
+    <field name="Description">Combines trend following with Oscar Grind strategy</field>
+    <block type="parameters">
+      <field name="short_ma" type="integer" value="25"/>
+      <field name="long_ma" type="integer" value="60"/>
+      <field name="ema_period" type="integer" value="15"/>
+      <field name="rsi_period" type="integer" value="12"/>
+      <field name="stoch_period" type="integer" value="14"/>
+      <field name="buy_threshold" type="integer" value="0.5"/>
+      <field name="sell_threshold" type="integer" value="1.5"/>
+      <field name="take_profit" type="integer" value="15"/>
+      <field name="stop_loss" type="integer" value="10"/>
+      <field name="leverage" type="integer" value="9"/>
+    </block>
+    <block type="indicators">
+      <block type="indicator" id="short_ma">
+        <field name="Type">sma</field>
+        <field name="Period">short_ma</field>
+      </block>
+      <block type="indicator" id="long_ma">
+        <field name="Type">sma</field>
+        <field name="Period">long_ma</field>
+      </block>
+      <block type="indicator" id="ema">
+        <field name="Type">ema</field>
+        <field name="Period">ema_period</field>
+      </block>
+      <block type="indicator" id="rsi">
+        <field name="Type">rsi</field>
+        <field name="Period">rsi_period</field>
+      </block>
+      <block type="indicator" id="stoch">
+        <field name="Type">stochastic</field>
+        <field name="Period">stoch_period</field>
+      </block>
+    </block>
+    <block type="logic">
+      <block type="condition">
+        <block type="indicator" id="short_ma_crossed_above_long_ma">
+          <field name="Indicator">short_ma</field>
+          <field name="Crossed">above</field>
+          <field name="Indicator">long_ma</field>
+        </block>
+        <block type="indicator" id="ema_crossed_above_close">
+          <field name="Indicator">ema</field>
+          <field name="Crossed">above</field>
+          <field name="Price">close</field>
+        </block>
+        <block type="indicator" id="rsi_below_30">
+          <field name="Indicator">rsi</field>
+          <field name="Below">30</field>
+        </block>
+        <block type="indicator" id="stoch_below_20">
+          <field name="Indicator">stoch</field>
+          <field name="Below">20</field>
+        </block>
+        <block type="action">
+          <field name="Type">buy</field>
+          <field name="Amount">0.1</field>
+          <field name="Leverage">leverage</field>
+        </block>
+      </block>
+      <block type="condition">
+        <block type="indicator" id="short_ma_crossed_below_long_ma">
+          <field name="Indicator">short_ma</field>
+          <field name="Crossed">below</field>
+          <field name="Indicator">long_ma</field>
+        </block>
+        <block type="indicator" id="ema_crossed_below_close">
+          <field name="Indicator">ema</field>
+          <field name="Crossed">below</field>
+          <field name="Price">close</field>
+        </block>
+        <block type="indicator" id="rsi_above_70">
+          <field name="Indicator">rsi</field>
+          <field name="Above">70</field>
+        </block>
+        <block type="indicator" id="stoch_above_80">
+          <field name="Indicator">stoch</field>
+          <field name="Above">80</field>
+        </block>
+        <block type="action">
+          <field name="Type">sell</field>
+          <field name="Amount">0.1</field>
+          <field name="Leverage">leverage</field>
+        </block>
+      </block>
+    </block>
   </block>
 </xml>
+```Here's the combined code in the requested format:
+
+```
+<xml xmlns="(link unavailable)" collection="true">
+  <block type="strategy" id="HybridTrendFollowingOscarGrindBot">
+    <field name="Name">Hybrid Trend Following & Oscar Grind Bot</field>
+    <field name="Description">Combines trend following with Oscar Grind strategy</field>
+    <block type="parameters">
+      <field name="short_ma" type="integer" value="25"/>
+      <field name="long_ma" type="integer" value="60"/>
+      <field name="ema_period" type="integer" value="15"/>
+      <field name="rsi_period" type="integer" value="12"/>
+      <field name="stoch_period" type="integer" value="14"/>
+      <field name="buy_threshold" type="integer" value="0.5"/>
+      <field name="sell_threshold" type="integer" value="1.5"/>
+      <field name="take_profit" type="integer" value="15"/>
+      <field name="stop_loss" type="integer" value="10"/>
+      <field name="leverage" type="integer" value="9"/>
+    </block>
+    <block type="indicators">
+      <block type="indicator" id="short_ma">
+        <field name="Type">sma</field>
+        <field name="Period">short_ma</field>
+      </block>
+      <block type="indicator" id="long_ma">
+        <field name="Type">sma</field>
+        <field name="Period">long_ma</field>
+      </block>
+      <block type="indicator" id="ema">
+        <field name="Type">ema</field>
+        <field name="Period">ema_period</field>
+      </block>
+      <block type="indicator" id="rsi">
+        <field name="Type">rsi</field>
+        <field name="Period">rsi_period</field>
+      </block>
+      <block type="indicator" id="stoch">
+        <field name="Type">stochastic</field>
+        <field name="Period">stoch_period</field>
+      </block>
+    </block>
+    <block type="logic">
+      <block type="condition">
+        <block type="indicator" id="short_ma_crossed_above_long_ma">
+          <field name="Indicator">short_ma</field>
+          <field name="Crossed">above</field>
+          <field name="Indicator">long_ma</field>
+        </block>
+        <block type="indicator" id="ema_crossed_above_close">
+          <field name="Indicator">ema</field>
+          <field name="Crossed">above</field>
+          <field name="Price">close</field>
+        </block>
+        <block type="indicator" id="rsi_below_30">
+          <field name="Indicator">rsi</field>
+          <field name="Below">30</field>
+        </block>
+        <block type="indicator" id="stoch_below_20">
+          <field name="Indicator">stoch</field>
+          <field name="Below">20</field>
+        </block>
+        <block type="action">
+          <field name="Type">buy</field>
+          <field name="Amount">0.1</field>
+          <field name="Leverage">leverage</field>
+        </block>
+      </block>
+      <block type="condition">
+        <block type="indicator" id="short_ma_crossed_below_long_ma">
+          <field name="Indicator">short_ma</field>
+          <field name="Crossed">below</field>
+          <field name="Indicator">long_ma</field>
+        </block>
+        <block type="indicator" id="ema_crossed_below_close">
+          <field name="Indicator">ema</field>
+          <field name="Crossed">below</field>
+          <field name="Price">close</field>
+        </block>
+        <block type="indicator" id="rsi_above_70">
+          <field name="Indicator">rsi</field>
+          <field name="Above">70</field>
+        </block>
+        <block type="indicator" id="stoch_above_80">
+          <field name="Indicator">stoch</field>
+          <field name="Above">80</field>
+        </block>
+        <block type="action">
+          <field name="Type">sell</field>
+          <field name="Amount">0.1</field>
+          <field name="Leverage">leverage</field>
+        </block>
+      </block>
+    </block>
+  </block>
+</xml>
+```
